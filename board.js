@@ -1,7 +1,15 @@
 class Board {
+  //create constructor class
+  constructor() {
+    this.grid = this.getEmptyBoard()
+    this.score = 0
+    this.level = 1
+  }
   //reset board when new game starts
   reset() {
     this.grid = this.getEmptyBoard()
+    this.score = 0
+    this.level = 1
   }
 
   //get matrix filled with zeros
@@ -86,18 +94,25 @@ class Board {
     }
     if (rows > 0) {
       board.updateScore(rows)
+      board.drawScore(ctx)
       board.draw(ctx)
     }
   }
 
   //implement draw function
   draw(ctx) {
+    ctx.clearRect(0, 0, COLS * BLOCK_SIZE, ROWS * BLOCK_SIZE)
     this.grid.forEach((row, y) => {
       row.forEach((value, x) => {
         if (value > 0) {
+          //make row withe color
+          ctx.fillStyle = COLORS[value - 2]
           ctx.fillRect(x, y, 1, 1)
         }
       })
     })
+  }
+  drawScore(ctx) {
+    document.getElementById('score').innerHTML = this.score //update score
   }
 }
