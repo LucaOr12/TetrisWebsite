@@ -1,2 +1,1 @@
-TetrisWebsite
-Thank you GitHub Copilot!
+Simple Tetris Game 
